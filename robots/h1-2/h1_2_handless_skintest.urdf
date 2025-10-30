@@ -662,7 +662,7 @@
     </visual>
   </link>
   <joint name="right_shoulder_roll_base_joint" type="fixed">
-    <origin rpy="1.5707 0 0" xyz="0 0 0"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
     <parent link="right_shoulder_roll_link"/>
     <child link="right_shoulder_roll_skin"/>
   </joint>
