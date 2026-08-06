@@ -52,4 +52,26 @@
       </xacro:if>
     </link>
   </xacro:macro>
+
+  <!-- ToF Sensor -->
+  <xacro:macro name="tof_sensor"
+    params="robot_namespace parent sensor_number *origin">
+    <joint name="${robot_namespace}_tof_sensor_${sensor_number}_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="${robot_namespace}_tof_sensor_${sensor_number}" />
+    </joint>
+    <link name="${robot_namespace}_tof_sensor_${sensor_number}" />
+  </xacro:macro>
+
+  <!-- Magnetic Sensor -->
+  <xacro:macro name="mag_sensor"
+    params="robot_namespace parent sensor_number *origin">
+    <joint name="${robot_namespace}_mag_sensor_${sensor_number}_joint" type="fixed">
+      <xacro:insert_block name="origin" />
+      <parent link="${parent}" />
+      <child link="${robot_namespace}_mag_sensor_${sensor_number}" />
+    </joint>
+    <link name="${robot_namespace}_mag_sensor_${sensor_number}" />
+  </xacro:macro>
 </robot>
