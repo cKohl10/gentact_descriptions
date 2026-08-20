@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  
+  <!-- Macro definition for link6 skin -->
+  <xacro:macro name="link6_skin" params="parent namespace">
+    <!-- Properties -->
+    <xacro:property name="use_mesh_file" value="true" />
+    <xacro:property name="mesh_file" value="package://gentact_descriptions/meshes/skin/trimodal/link6_trybrid_viz.stl" />
+    <xacro:property name="mass" value="0.3" /> <!-- [kg] -->
+    <xacro:property name="body_width" value="0.3" /> <!-- [m] -->
+    <xacro:property name="body_height" value="0.1" /> <!-- [m] -->
+    <xacro:property name="sensor_length" value="0.05" /> <!-- [m] -->
+    <xacro:property name="sensor_radius" value="0.0" /> <!-- [m] -->
+
+    <!-- Included URDF Files -->
+    <xacro:include filename="$(find gentact_descriptions)/robots/common/trimodal_unit_base.xacro" />
+
+    <!-- Instantiate dermis once -->
+    <xacro:dermis_base_macro
+      robot_namespace="${namespace}"
+      parent="${parent}"
+      mass="${mass}"
+      body_width="${body_width}"
+      body_height="${body_height}"
+      use_mesh_file="${use_mesh_file}"
+      mesh_file="${mesh_file}">
+      <origin xyz="0 0 0" rpy="-1.57079632679 0 0" />
+    </xacro:dermis_base_macro>
+
+    <!-- Instantiate capacitive sensors -->
+    <xacro:self_cap_sensor
+      robot_namespace="${namespace}"
+      parent="${namespace}_skin"
+      sensor_number="0"
+      sensor_radius="${sensor_radius}"
+      sensor_length="0.057"
+      normal_x="-0.618"
+      normal_y="-0.771"
+      normal_z="-0.155">
+      <origin xyz="0.125 0.007 -0.044" rpy="-2.235 -0.896 -0.784" />
+    </xacro:self_cap_sensor>
+    <xacro:self_cap_sensor
+      robot_namespace="${namespace}"
+      parent="${namespace}_skin"
+      sensor_number="1"
+      sensor_radius="${sensor_radius}"
+      sensor_length="0.048"
+      normal_x="-0.073"
+      normal_y="-0.709"
+      normal_z="0.702">
+      <origin xyz="0.099 0.041 -0.028" rpy="-1.643 -0.025 -0.337" />
+    </xacro:self_cap_sensor>
+    <xacro:self_cap_sensor
+      robot_namespace="${namespace}"
+      parent="${namespace}_skin"
+      sensor_number="2"
+      sensor_radius="${sensor_radius}"
+      sensor_length="0.060"
+      normal_x="0.993"
+      normal_y="-0.117"
+      normal_z="0.014">
+      <origin xyz="0.110 -0.036 -0.032" rpy="1.863 -0.257 0.703" />
+    </xacro:self_cap_sensor>
+
+    <!-- Instantiate self ToF sensor -->
+    <xacro:tof_sensor
+      robot_namespace="${namespace}"
+      parent="${namespace}_skin"
+      sensor_number="0">
+      <origin xyz="0.105 0.007 -0.077" rpy="-2.837 -0.800 -0.222" />
+    </xacro:tof_sensor>
+        <xacro:tof_sensor
+      robot_namespace="${namespace}"
+      parent="${namespace}_skin"
+      sensor_number="1">
+      <origin xyz="0.081 0.041 -0.058" rpy="-1.861 -0.033 -0.110" />
+    </xacro:tof_sensor>
+        <xacro:tof_sensor
+      robot_namespace="${namespace}"
+      parent="${namespace}_skin"
+      sensor_number="2">
+      <origin xyz="0.089 -0.037 -0.063" rpy="2.023 -0.158 0.313" />
+    </xacro:tof_sensor>
+
+    <!-- Instantiate magnetic sensor -->
+    <xacro:mag_sensor
+      robot_namespace="${namespace}"
+      parent="${namespace}_skin"
+      sensor_number="0">
+      <origin xyz="0.118 -0.023 -0.045" rpy="1.877 -0.320 0.783" />
+    </xacro:mag_sensor>
+    <xacro:mag_sensor
+      robot_namespace="${namespace}"
+      parent="${namespace}_skin"
+      sensor_number="1">
+      <origin xyz="0.107 0.036 -0.039" rpy="-1.777 -0.095 -0.426" />
+    </xacro:mag_sensor>
+
+  </xacro:macro>
+
+</robot>
